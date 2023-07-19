@@ -1,4 +1,4 @@
-# urlproject
+# urlshortener
 asks user to sign up/ log in  
 lets the user shorten any valid URL   
 lets the user choose a custom url   

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>URL Shortener</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f7fa;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 {    
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .form-wrapper {
+      flex-basis: 45%;
+    }
+
+    form {
+      background-color: #fff;
+      border: 1px solid #d1e8f5;
+      border-radius: 10px;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-color: #333;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 94%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border-color: #333;
+    }
+
+    button {
+      background-color: #0080ff;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0066cc;
+    }
+
+    a {
+        display: block;
+      text-align: center;
+      color: #1da1f2;
+      text-decoration: none;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    p {
+      display: block;
+      text-align: center;
+      color: #333;
+      text-decoration: none;
+      margin-top: 20px;
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>URL Shortener</h1>
+  <div class="container">
+    <div class="form-wrapper">
+      <h2>Sign up</h2>
+      <form action="/api/signup" method="POST">
+        <label for="signupUsername">Username:</label>
+        <input type="text" id="signupUsername" name="signupUsername" required>
+        <br>
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" name="signupPassword" required>
+        <br>
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+    <div class="form-wrapper">
+      <h2>Log in</h2>
+      <form action="/api/login" method="POST">
+        <label for="loginUsername">Username:</label>
+        <input type="text" id="loginUsername" name="loginUsername" required>
+        <br>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+        <br>
+        <button type="submit">Log in</button>
+      </form>
+    </div>
+  </div>
+  <a id="twitterprofile" href = 'https://twitter.com/daskurabiye'>My Twitter</a>
+  <p>©Created by Ata Berk Karabağ</p>
+</body>
+</html>

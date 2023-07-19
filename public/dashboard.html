@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f7fa;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #fff;
+      border: 1px solid #d1e8f5;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 6px;
+      text-align: left;
+      border-bottom: 1px solid #0a0a0a;
+    }
+
+    th {
+      background-color: #99d8ef;
+    }
+
+    /* Use the word-wrap property to wrap long URLs after a certain number of characters */
+    .long-link {
+      word-break: break-all;
+      word-wrap: break-word;
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .share-buttons a,
+    .button {
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+      text-align: center;
+      border-radius: 3px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .twitter {
+      background-color: #1da1f2;
+    }
+
+    .whatsapp {
+      background-color: #25D366;
+    }
+
+    .facebook {
+      background-color: #4267B2;
+    }
+
+    .instagram {
+      background-color: #e4405f;
+    }
+
+    .copy-button {
+      background-color: #0080ff;
+    }
+
+    .delete-button {
+      background-color: #e74c3c; /* Reddish color */
+      border : none
+    }
+
+    .edit-button {
+      background-color: #ff9800; /* Orange color */
+      border : none
+    }
+
+    .button:hover {
+      background-color: #0066cc;
+    }
+  </style>
+  <script>
+    function copyToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Link copied to clipboard!');
+    }
+  </script>
+</head>
+<body>
+  <h1>Dashboard</h1>
+  <table>
+    <tr>
+      <th>Short Link</th>
+      <th>Long Link</th>
+      <th>Click Count</th>
+      <th>Actions</th>
+    </tr>
+    <% links.forEach(function(link) { %>
+      <tr>
+        <td><%= link.shortLink %></td>
+        <td class="long-link"><%= link.longLink %></td>
+        <td><%= link.clickCount %></td>
+        <td>
+          <div class="share-buttons">
+            <a class="twitter button" href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(link.shortLink) %>&text=Check%20out%20this%20short%20link" target="_blank"></a>
+            <a class="whatsapp button" href="whatsapp://send?text=<%= encodeURIComponent(link.shortLink) %>" target="_blank"></a>
+            <a class="copy-button button" onclick="copyToClipboard('<%= link.shortLink %>')"></a>
+            <form action="/api/delete-link" method="POST">
+              <input type="hidden" name="shortLink" value="<%= link.shortLink %>">
+              <button class="delete-button button" type="submit"></button>
+            </form>
+            <form action="/api/edit-link" method="POST">
+              <input type="hidden" name="shortLink" value="<%= link.shortLink %>">
+              <button class="edit-button button" type="submit"></button>
+            </form>
+          </div>
+        </td> 
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>

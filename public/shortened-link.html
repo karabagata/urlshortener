@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shortened Link</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f7fa;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .short-link-container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid #d1e8f5;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .short-link-container a {
+      display: inline-block;
+      margin: 10px;
+      font-weight: bold;
+      color: #0080ff;
+      text-decoration: none;
+    }
+
+    .twitter,
+    .whatsapp {
+      background-color: #fff;
+      color: #1da1f2; /* Twitter color */
+      border: 1px solid #1da1f2;
+      border-radius: 20px;
+      padding: 6px 14px;
+    }
+
+    .whatsapp {
+      color: #25D366; /* WhatsApp color */
+      border-color: #25D366;
+    }
+
+    .copy-button {
+      background-color: #dde2e8;
+      color: #333;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    function copyToClipboard(text) {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('Link copied to clipboard!');
+    }
+  </script>
+</head>
+<body>
+  <h1>Shortened Link</h1>
+  <div class="short-link-container">
+    <h2>Your short link:</h2>
+    <div>
+      <a href="<%= shortLink %>"><%= shortLink %></a>
+      <a class="twitter" href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent(shortLink) %>&text=Check%20out%20this%20short%20link" target="_blank">Twitter</a>
+      <a class="whatsapp" href="whatsapp://send?text=<%= encodeURIComponent(shortLink) %>" target="_blank">WhatsApp</a>
+      <a class="copy-button" onclick="copyToClipboard('<%= shortLink %>')">Copy Link</a>
+    </div>
+  </div>
+</body>
+</html>
